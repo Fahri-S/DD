@@ -19,7 +19,7 @@ function toIcon(text) {
 
 
 
-function games (){
+function games (playermilih) {
     if (ronde > maxronde) { 
       let hasil = "";
       if (playerskor > kompskor) {
@@ -40,7 +40,7 @@ function games (){
 
       
       const komp = bot();
-    let player = playermilih();
+    let player = playermilih.toLowerCase();
 
     if (player === komp) { 
       document.getElementById("result").innerHTML += (`Ronde ${ronde}: seri !!! sama-sama pilih ${toIcon(player)} <br>`);
@@ -58,12 +58,27 @@ function games (){
 
 let playbutton = document.createElement("button");
 playbutton.textContent = "Mainkan";
+document.getElementById("button-container").appendChild(playbutton);
 playbutton.onclick = function(){
   playbutton.style.display = 'none';
 
   let jalanbtn = document.createElement("button");
   jalanbtn.textContent = "Jalan";
-  jalanbtn.onclick = games;
   document.getElementById("button-container").appendChild(jalanbtn);
- }
-document.getElementById("button-container").appendChild(playbutton);
+  jalanbtn.onclick = function(){
+    jalanbtn.style.display = 'none';
+
+    const pilih = ["batu", "gunting", "kertas"];
+    pilih.forEach(pilih => {
+      let btn = document.createElement("button");
+      btn.textContent = pilih.charAt(0).toUpperCase() + pilih.slice(1);
+      btn.className = 'pilih';
+      btn.onclick = function() {
+        games(pilih);
+    };
+  document.getElementById("button-container").appendChild(btn);
+  });
+
+
+ }}
+
