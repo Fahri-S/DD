@@ -10,8 +10,16 @@ function bot() {
   return pilihan[ngacak];
 }
 
+function toIcon(text) {
+    if (text === "batu") return "🪨";
+    if (text === "gunting") return "✂️";
+    if (text === "kertas") return "📄";
+    return text;
+}
 
-function games (){
+
+
+function games (playermilih) {
     if (ronde > maxronde) { 
       let hasil = "";
       if (playerskor > kompskor) {
@@ -25,16 +33,11 @@ function games (){
       }
 
       document.getElementById("result").innerHTML += `<br><br>Game Selesai !!! Skor Akhir: lu ${playerskor} - ${kompskor} Komputer <br>` + hasil;
-      button.disabled = true;
+      document.querySelector('.pilih').forEach(btn => btn.disabled = true);
       return;
     }
-
-    let playermilih = "";
     
-      while (!["batu", "gunting", "kertas"].includes(playermilih.toLowerCase())) {
-        playermilih = prompt("Ronde" + ronde + " Masukkan Pilihanmu (batu, gunting, kertas): ");
-        if (playermilih === null) return;
-      }
+
       
       const komp = bot();
     let player = playermilih.toLowerCase();
@@ -53,27 +56,37 @@ function games (){
     ronde++;
 }
 
-
-function toIcon(text) {
-    if (text === "batu") return "🪨";
-    if (text === "gunting") return "✂️";
-    if (text === "kertas") return "📄";
-    return text;
-}
-
-
 let playbutton = document.createElement("button");
 playbutton.textContent = "Mainkan";
+document.getElementById("button-container").appendChild(playbutton);
 playbutton.onclick = function(){
   playbutton.style.display = 'none';
 
   let jalanbtn = document.createElement("button");
   jalanbtn.textContent = "Jalan";
-  jalanbtn.onclick = games;
   document.getElementById("button-container").appendChild(jalanbtn);
- }
-document.getElementById("button-container").appendChild(playbutton);
+  jalanbtn.onclick = function(){
+    jalanbtn.style.display = 'none';
 
-function jalanbtn(){
-  games();
-}
+    const pilih = ["batu", "gunting", "kertas"];
+    const icon = {
+      batu: "🪨",
+      gunting: "✂️",
+      kertas: "📄"
+    }
+
+
+
+    pilih.forEach(pilih => {
+      let btn = document.createElement("button");
+      btn.textContent =icon[pilih] || pilihicon.charAt(0).toUpperCase() + pilihicon.slice(1);
+      btn.className = 'pilih';
+      btn.onclick = function() {
+        games(pilih);
+    };
+  document.getElementById("button-container").appendChild(btn);
+  });
+
+
+ }}
+
