@@ -33,20 +33,9 @@ function games (){
       }
 
       document.getElementById("result").innerHTML += `<br><br>Game Selesai !!! Skor Akhir: lu ${playerskor} - ${kompskor} Komputer <br>` + hasil;
-      button.disabled = true;
+      document.querySelector('.pilih').forEach(btn => btn.disabled = true);
       return;
     }
-
-    const playermilih = toIcon(["batu", "gunting", "kertas"]);
-    playermilih.forEach(playermilih => {
-      let btn = document.createElement("button");
-      btn.textContent = playermilih.charAt(0).toUpperCase() + playermilih.slice(1);
-      btn.onclick = function() {
-        games(playermilih);
-      };
-      document.getElementById("button-container").appendChild(btn);
-    }
-    )
     
 
       
@@ -78,7 +67,3 @@ playbutton.onclick = function(){
   document.getElementById("button-container").appendChild(jalanbtn);
  }
 document.getElementById("button-container").appendChild(playbutton);
-
-function jalanbtn(){
-  games();
-}
