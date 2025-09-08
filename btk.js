@@ -10,6 +10,14 @@ function bot() {
   return pilihan[ngacak];
 }
 
+function toIcon(text) {
+    if (text === "batu") return "🪨";
+    if (text === "gunting") return "✂️";
+    if (text === "kertas") return "📄";
+    return text;
+}
+
+
 
 function games (){
     if (ronde > maxronde) { 
@@ -29,15 +37,21 @@ function games (){
       return;
     }
 
-    let playermilih = "";
+    const playermilih = toIcon(["batu", "gunting", "kertas"]);
+    playermilih.forEach(playermilih => {
+      let btn = document.createElement("button");
+      btn.textContent = playermilih.charAt(0).toUpperCase() + playermilih.slice(1);
+      btn.onclick = function() {
+        games(playermilih);
+      };
+      document.getElementById("button-container").appendChild(btn);
+    }
+    )
     
-      while (!["batu", "gunting", "kertas"].includes(playermilih.toLowerCase())) {
-        playermilih = prompt("Ronde" + ronde + " Masukkan Pilihanmu (batu, gunting, kertas): ");
-        if (playermilih === null) return;
-      }
+
       
       const komp = bot();
-    let player = playermilih.toLowerCase();
+    let player = playermilih();
 
     if (player === komp) { 
       document.getElementById("result").innerHTML += (`Ronde ${ronde}: seri !!! sama-sama pilih ${toIcon(player)} <br>`);
@@ -52,15 +66,6 @@ function games (){
     }
     ronde++;
 }
-
-
-function toIcon(text) {
-    if (text === "batu") return "🪨";
-    if (text === "gunting") return "✂️";
-    if (text === "kertas") return "📄";
-    return text;
-}
-
 
 let playbutton = document.createElement("button");
 playbutton.textContent = "Mainkan";
