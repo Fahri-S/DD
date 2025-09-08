@@ -69,9 +69,17 @@ playbutton.onclick = function(){
     jalanbtn.style.display = 'none';
 
     const pilih = ["batu", "gunting", "kertas"];
+    const icon = {
+      batu: "🪨",
+      gunting: "✂️",
+      kertas: "📄"
+    }
+
+
+
     pilih.forEach(pilih => {
       let btn = document.createElement("button");
-      btn.textContent = pilih.charAt(0).toUpperCase() + pilih.slice(1);
+      btn.textContent =icon[pilih] || pilihicon.charAt(0).toUpperCase() + pilihicon.slice(1);
       btn.className = 'pilih';
       btn.onclick = function() {
         games(pilih);
