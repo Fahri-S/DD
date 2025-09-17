@@ -4,11 +4,11 @@ const app = express();
 const port = 3000;
 
 app.use(express.json());
-app.use(express.static('login.html'));
+app.use(express.static(__dirname));
 
 app.post('/save-user', (req, res) => {
     const username = req.body.username;
-    if (!username) {
+    if (!username) 
         return res.status(400).send('Username is required');
         let users = [];
         if (fs.existsSync('users.json')) {
@@ -17,7 +17,7 @@ app.post('/save-user', (req, res) => {
         users.push(username);
         fs.writeFileSync('users.json', JSON.stringify(users, null, 2));
         res.send('User saved');
-    }
+    
 });
 
 app.listen(port, () => 

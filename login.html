@@ -8,13 +8,22 @@
     </head>
 
     <body>
-        <h1>Silahkan Login</h1>
-        <input type="" id="nama">
-        <!-- <div id="button-container"></div>
-        <script src="login.js"></script> -->
-        <br><br><br>
-        <a id="link" href = "dua.html">Game lain</a>
-        
-
+        <form id="Buatlogin">
+            <h1>Silahkan Login</h1>
+            <input type="text" id="username" placeholder="Masukkan Username" required>
+            <button type="submit">Login</button>
+        </form>
+        <script>
+            document.getElementById("Buatlogin").onsubmit = async function (e) {e.preventDefault();
+                const username = document.getElementById("username").value;
+                await fetch('/save-user', {
+                    method: 'post',
+                    headers: {'Content-Type' : 'application/json'},
+                    body: JSON.stringify({username})
+                });
+                localStorage.setItem("username", username);
+                window.location.href = "dua.html"
+            };
+        </script>
     </body>
 </html>
