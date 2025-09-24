@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="gaya.css">
+</head>
+<body>
+  <h2 id="judul">Halaman Login</h2>
+  <form id="loginForm">
+    <input type="text" id="log-username" placeholder="Username" required>
+    <input type="password" id="log-password" placeholder="Password" required>
+    <button id="tom-login" onclick="login()" type="button">Login</button>
+  </form>
+  <p id="msg"></p>
+  <a id="link" href="register.html">Register</a>
+
+
+  <script>
+    async function login() {
+  const username = document.getElementById("log-username").value;
+  const password = document.getElementById("log-password").value;
+
+  const res = await fetch("/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ username, password })
+  });
+
+  const data = await res.json();
+  document.getElementById("msg").innerText = data.message;
+
+  if (data.message === "Login berhasil!") {
+    window.location.href = "dua.html";
+  }
+  else {
+    document.getElementById("msg").innerText = "Login gagal. Periksa username dan password.";}}
+  </script>
+
+</body>
+</html>

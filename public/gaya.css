@@ -3,7 +3,6 @@ body {
     background-color: black;
 }
 
-/* Style for the button */
 button {
     background-color: #060606;
     color: white;
@@ -147,6 +146,100 @@ h1 {
     display:inline-flex;
     width: 100%;
   }
+
+
+#judul {
+    font: sans-serif;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    margin: 20px;
+    font-size: 36px;
+    border-radius: 12px;
+    border: 2px solid rgb(255, 255, 255);
+    padding: 10px;
+    background-color: rgb(115, 16, 3);
+}
+
+#loginForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 20px;
+    background-color: #840404;
+    border: #edf1f1;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#registerForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 20px;
+    background-color: #840404;
+    border-color: white;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#tom-login {
+    background-color: #060606;
+    display: flex;
+    color: rgb(13, 13, 13);
+    padding: 12px 60px;
+    margin: 12px;
+    border: 2px ;
+    border-radius: 5px;
+    overflow: hidden;
+    font-size: 18px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    z-index: 1;
+}
+
+#tom-login::before {
+  content:"";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, #fdfdfd, #001aff, #edf1f1);
+  animation: rotate 5s linear infinite;
+  z-index: -2;
+}
+
+#tom-login::after {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  background: conic-gradient(from 0deg, #fdfdfd, #001aff, #edf1f1);
+  border-radius: inherit;
+  z-index: -1;
+}
+
+#tom-login:hover {
+    background-color: #0a0a0a;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+#msg {
+    position: flex;
+    bottom: 20px;
+    right: 20px;
+    background-color: #fa0707;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    font-size: 16px;
+}
 
 
 @keyframes rotate {
